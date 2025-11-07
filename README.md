@@ -1,2 +1,7 @@
-# DatabaseManagement_A3_1
-Student database creation
+Jessica Hill
+
+Setup instructions:
+-
+
+How to run application:
+-

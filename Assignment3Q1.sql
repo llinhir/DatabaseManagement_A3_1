@@ -14,7 +14,7 @@ INSERT INTO students (first_name, last_name, email, enrollment_date) VALUES
 ('Jim', 'Beam', 'jim.beam@example.com', '2023-09-02');
 
 # Retrieves and displays all records from the students table.
-CREATE FUNCTION getAllStudents()
+CREATE OR REPLACE FUNCTION getAllStudents()
 RETURNS TABLE (
     student_id INT,
     first_name TEXT,
@@ -33,7 +33,7 @@ END;
 $$;
 
 # Inserts a new student record into the students table.
-CREATE FUNCTION addStudent(fname TEXT, lname TEXT, new_mail TEXT, new_date DATE)
+CREATE OR REPLACE FUNCTION addStudent(fname TEXT, lname TEXT, new_mail TEXT, new_date DATE)
 RETURNS VOID AS $$
 BEGIN
     INSERT INTO students (first_name, last_name, email, enrollment_date)
@@ -42,7 +42,7 @@ END;
 $$ LANGUAGE plpgsql;
 
 # Updates the email address for a student with the specified student_id.
-CREATE FUNCTION updateStudentEmail(stu_id INTEGER, new_email TEXT)
+CREATE OR REPLACE FUNCTION updateStudentEmail(stu_id INTEGER, new_email TEXT)
 RETURNS VOID AS $$
 BEGIN
     UPDATE students
@@ -52,7 +52,7 @@ END;
 $$ LANGUAGE plpgsql;
 
 # Deletes the record of the student with the specified student_id.
-CREATE FUNCTION deleteStudent(stu_id INTEGER)
+CREATE OR REPLACE FUNCTION deleteStudent(stu_id INTEGER)
 RETURNS VOID AS $$
 BEGIN
     DELETE FROM students
