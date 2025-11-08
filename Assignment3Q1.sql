@@ -1,4 +1,5 @@
-# Create students table
+-- Create students table
+DROP TABLE IF EXISTS students;
 CREATE TABLE students(
     student_id SERIAL PRIMARY KEY,
     first_name TEXT NOT NULL,
@@ -7,13 +8,13 @@ CREATE TABLE students(
     enrollment_date DATE
 );
 
-# Populate table with provided data
+-- Populate table with provided data
 INSERT INTO students (first_name, last_name, email, enrollment_date) VALUES
 ('John', 'Doe', 'john.doe@example.com', '2023-09-01'),
 ('Jane', 'Smith', 'jane.smith@example.com', '2023-09-01'),
 ('Jim', 'Beam', 'jim.beam@example.com', '2023-09-02');
 
-# Retrieves and displays all records from the students table.
+-- Retrieves and displays all records from the students table.
 CREATE OR REPLACE FUNCTION getAllStudents()
 RETURNS TABLE (
     student_id INT,
@@ -32,7 +33,7 @@ BEGIN
 END;
 $$;
 
-# Inserts a new student record into the students table.
+-- Inserts a new student record into the students table.
 CREATE OR REPLACE FUNCTION addStudent(fname TEXT, lname TEXT, new_mail TEXT, new_date DATE)
 RETURNS VOID AS $$
 BEGIN
@@ -41,7 +42,7 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-# Updates the email address for a student with the specified student_id.
+-- Updates the email address for a student with the specified student_id.
 CREATE OR REPLACE FUNCTION updateStudentEmail(stu_id INTEGER, new_email TEXT)
 RETURNS VOID AS $$
 BEGIN
@@ -51,7 +52,7 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-# Deletes the record of the student with the specified student_id.
+-- Deletes the record of the student with the specified student_id.
 CREATE OR REPLACE FUNCTION deleteStudent(stu_id INTEGER)
 RETURNS VOID AS $$
 BEGIN
@@ -60,8 +61,10 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+/*
 SELECT addStudent('Gee', 'Gee', 'g@geemail.com', '2023-08-08');
 SELECT updateStudentEmail(1, 'johnny@mail.com');
 SELECT deleteStudent(3);
 SELECT * FROM getAllStudents()
     ORDER BY student_id;
+*/
